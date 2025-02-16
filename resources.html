@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources - Makers Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/YOUR_KIT_ID.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+
+       <button id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
+       <!-- <i class="fas fa-moon"></i> -->
+        
+        <svg id="icon" width="40" height="40" viewBox="0 0 24 24" fill="none" 
+         stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Moon Icon -->
+          <path id="moonIcon" d="M12 2a1 1 0 0 1 .99 1.15 6 6 0 1 0 7.86 7.86A1 1 0 0 1 22 12a10 10 0 1 1-10-10z"/>
+          <!-- Sun Icon with Rays (hidden by default) -->
+          <g id="sunIcon" stroke="white" style="display: none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </g>
+        </svg>
+        
+      </button>
+      
+      <nav class="main-nav">
+        <a href="/" class="nav-link">HOME</a>
+        <a href="/about.html" class="nav-link">ABOUT</a>
+        <a href="/jobs.html" class="nav-link">JOBS</a>
+        <a href="/resources.html" class="nav-link">RESOURCES</a>
+      </nav>
+
+      <header class="page-header">
+        <h1>RESOURCES</h1>
+        <div class="glitch-effect"></div>
+      </header>
+
+      <section class="resources-content">
+        <div class="resource-category">
+          <h2>SOFTWARE TOOLS</h2>
+          <ul class="resource-list">
+            <li><a href="#" class="resource-link">ARDUINO IDE</a></li>
+            <li><a href="#" class="resource-link">FUSION 360</a></li>
+            <li><a href="#" class="resource-link">MATLAB</a></li>
+            <li><a href="#" class="resource-link">ROS (ROBOT OPERATING SYSTEM)</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-category">
+          <h2>ONLINE COURSES</h2>
+          <ul class="resource-list">
+            <li><a href="#" class="resource-link">EDX - INTRODUCTION TO ROBOTICS</a></li>
+            <li><a href="#" class="resource-link">COURSERA - CONTROL OF MOBILE ROBOTS</a></li>
+            <li><a href="#" class="resource-link">MIT OCW - ROBOTICS</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-category">
+          <h2>ORGANIZATIONS</h2>
+          <ul class="resource-list">
+            <li><a href="#" class="resource-link">IEEE ROBOTICS AND AUTOMATION SOCIETY</a></li>
+            <li><a href="#" class="resource-link">FIRST ROBOTICS</a></li>
+            <li><a href="#" class="resource-link">ROBOTICS INDUSTRIES ASSOCIATION</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-category">
+          <h2>DOCUMENTATION</h2>
+          <ul class="resource-list">
+            <li><a href="#" class="resource-link">RASPBERRY PI DOCS</a></li>
+            <li><a href="#" class="resource-link">ARDUINO REFERENCE</a></li>
+            <li><a href="#" class="resource-link">PIC MICROCONTROLLER GUIDES</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <footer>
+        <p>BUILD COOL STUFF WITH US</p>
+      </footer>
+    </div>
+    <script src="/js/theme.js"></script>
+  </body>
+</html>
