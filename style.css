@@ -7,7 +7,6 @@
 
 /* Import Space Grotesk font */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
 :root {
   --bg-color: #ffffff;
@@ -31,6 +30,13 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   transition: background-color 0.3s, color 0.3s;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 /* Theme Toggle */
@@ -58,10 +64,34 @@ body {
   font-size: 1.2rem;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Navigation */
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 0.5rem 1rem;
+  position: relative;
+  background: transparent;
+  border: 2px solid transparent;
+  display: inline-block;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background-color: var(--secondary-color);
+  color: #000000;
+  transform: rotate(-2deg);
+}
+
+/* Active state for current page */
+.nav-link.active {
+  background-color: var(--secondary-color);
+  color: #000000;
+  transform: rotate(-2deg);
 }
 
 .main-nav {
@@ -70,22 +100,11 @@ body {
   margin-bottom: 2rem;
   border-bottom: 4px solid var(--border-color);
   padding-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: all 0.2s ease;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-.nav-link:hover {
-  transform: skew(-5deg);
-}
-
-/* Header Styles */
+/* Header */
 .header {
   position: relative;
   margin-bottom: 4rem;
@@ -98,29 +117,32 @@ body {
 
 .logo-container {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  width: 117px;
   height: 80px;
+  width: auto;
+  display: block;
 }
 
 .header-text {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .header-text h1 {
+  margin: 0;
+  line-height: .75;
   font-size: 4rem;
   font-weight: bold;
-  margin: 0;
   letter-spacing: -2px;
+  transform: skew(-5deg);
   font-family: 'Space Grotesk', sans-serif;
-  line-height: 1.1;
-  text-align: left;
-}
-
-.page-header {
-  margin-bottom: 2rem;
 }
 
 .glitch-effect {
@@ -137,8 +159,10 @@ body {
     var(--border-color) 11px
   );
   opacity: 0.1;
+  pointer-events: none;
 }
 
+/* Meeting Info */
 .meeting-info {
   margin-bottom: 4rem;
 }
@@ -163,6 +187,7 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+/* Sponsors */
 .sponsors {
   margin-bottom: 4rem;
 }
@@ -191,6 +216,7 @@ h2 {
   font-family: 'Space Grotesk', sans-serif;
 }
 
+/* Social Links */
 .social-links {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -218,6 +244,7 @@ h2 {
   box-shadow: 4px 4px 0 var(--border-color);
 }
 
+/* About Content */
 .about-content {
   display: grid;
   gap: 3rem;
@@ -239,6 +266,7 @@ h2 {
   border-left: 3px solid var(--border-color);
 }
 
+/* Team Grid */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -256,6 +284,7 @@ h2 {
   font-family: 'Space Grotesk', sans-serif;
 }
 
+/* Jobs Filter */
 .jobs-filter {
   margin-bottom: 3rem;
   border: 3px solid var(--border-color);
@@ -297,6 +326,7 @@ h2 {
   color: var(--bg-color);
 }
 
+/* Remote Toggle */
 .remote-toggle {
   display: flex;
   align-items: center;
@@ -348,6 +378,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+/* Job Cards */
 .job-card {
   border: 3px solid var(--border-color);
   padding: 1.5rem;
@@ -457,6 +488,7 @@ input:checked + .slider:before {
   box-shadow: 2px 2px 0 var(--border-color);
 }
 
+/* Resources */
 .resources-content {
   display: grid;
   gap: 3rem;
@@ -489,6 +521,7 @@ input:checked + .slider:before {
   transform: translateX(10px);
 }
 
+/* Footer */
 footer {
   margin-top: 4rem;
   padding: 2rem;
@@ -499,9 +532,20 @@ footer {
   font-family: 'Space Grotesk', sans-serif;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header-text {
+    align-items: center;
   }
 
   .info-box {
@@ -540,16 +584,5 @@ footer {
   .job-title-info {
     min-height: auto;
     gap: 0.5rem;
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .header-text h1 {
-    font-size: 2.5rem;
-    text-align: center;
   }
 }
