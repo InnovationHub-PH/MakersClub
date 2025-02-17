@@ -92,6 +92,60 @@ header {
   padding: 2rem;
 }
 
+.header {
+  display: flex;
+  align-items: stretch; /* Ensure children share the same height */
+  position: relative;   /* Needed if you plan to position the glitch-effect absolutely */
+  padding: 20px;        /* Optional: adjust spacing as needed */
+}
+
+/* Container for the logo (glitch effect + SVG) */
+.logo-container {
+  /* No fixed height; it will stretch to the header’s height */
+  position: relative; /* Allow glitch-effect positioning if desired */
+}
+
+/* The SVG scales to the container's height */
+.logo {
+  height: 100%;
+  width: auto;  /* Maintain aspect ratio */
+  display: block;
+}
+
+/* (Optional) Style for the glitch effect */
+.glitch-effect {
+  /* Example: positioned over the logo */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Add additional glitch styling as needed */
+}
+
+/* Container for the text – stacks h1’s vertically */
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the text */
+  text-align: left;
+  margin-left: 110px;       /* Space between the logo and the text */
+}
+
+/* Remove default margins and adjust font sizes for the h1 elements */
+.header-text h1 {
+  text-align: left;
+  margin: 0;
+  line-height: 1;  /* Adjust if you want them closer or further apart */
+  font-size: 2rem; /* Adjust as needed */
+}
+
+.INNOVATION {
+  font-weight: bold;
+}
+
+.HUB {
+  font-weight: regular;
+}
+
 .page-header {
   margin-bottom: 2rem;
 }
