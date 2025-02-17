@@ -92,7 +92,7 @@ header {
   padding: 2rem;
 }
 
-.header {
+.home-header {
   display: flex;
   align-items: stretch; /* Ensure children share the same height */
   position: relative;   /* Needed if you plan to position the glitch-effect absolutely */
