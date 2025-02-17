@@ -13,6 +13,9 @@
   --bg-color: #ffffff;
   --text-color: #000000;
   --border-color: #000000;
+  --primary-color: #358C7C;  /* Green */
+  --secondary-color: #F2C879; /* Yellow */
+  --accent-color: #9305F2;   /* Purple */
 }
 
 [data-theme="dark"] {
@@ -36,7 +39,6 @@ body {
   top: 1rem;
   right: 1rem;
   background: none;
-  /*border: 2px solid var(--border-color); */
   border: none;
   padding: 0.5rem;
   cursor: pointer;
@@ -136,7 +138,7 @@ h2 {
   color: var(--bg-color);
   padding: 2rem;
   font-size: 1.5rem;
-  transform: rotate(-1deg);
+  transform: rotate(-2deg);
 }
 
 .info-box p {
@@ -334,20 +336,49 @@ input:checked + .slider:before {
   margin-bottom: 2rem;
 }
 
+.job-header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  align-items: stretch;
+}
+
+.company-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.job-title-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  padding: 0;
+}
+
 .job-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0;
   font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.2;
 }
 
 .job-card h4 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin: 0.2rem 0;
   font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.2;
 }
 
 .location {
-  margin-bottom: 1rem;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  line-height: 1.2;
 }
 
 .tags {
@@ -365,8 +396,28 @@ input:checked + .slider:before {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.description {
+.description-container {
   margin-bottom: 1rem;
+}
+
+.description {
+  margin-bottom: 0.5rem;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .9rem;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.read-more:hover {
+  opacity: 0.7;
 }
 
 .apply-btn {
@@ -456,5 +507,20 @@ footer {
 
   .remote-toggle {
     justify-content: center;
+  }
+
+  .job-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .company-logo {
+    margin-bottom: 1rem;
+  }
+
+  .job-title-info {
+    min-height: auto;
+    gap: 0.5rem;
   }
 }
