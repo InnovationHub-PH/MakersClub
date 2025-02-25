@@ -1,5 +1,5 @@
 {
-  "name": "mechatronics-club",
+  "name": "brutalist-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "devDependencies": {
     "vite": "^5.0.0"
   }
 }
