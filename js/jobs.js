@@ -3,7 +3,7 @@ const jobs = [
     {
         title: 'Job Title',
         company: 'Company Name',
-        logo: 'InnovationHub-PH/MakersClub/tree/main/images/Stealth_No_Image.png', 
+        logo: 'innovationhub-ph.github.io/MakersClub/images/Stealth_No_Image.png', 
         location: 'Makati, MNL',
         remote: false,
         tags: ['robotics', 'hardware'],
@@ -12,7 +12,7 @@ const jobs = [
     {
         title: 'Software Developer',
         company: 'Remote Robotics',
-        logo: '/images/Stealth_No_Image.png',
+        logo: 'innovationhub-ph/MakersClub/images/Stealth_No_Image.png',
         location: 'Remote',
         remote: true,
         tags: ['software', 'robotics'],
