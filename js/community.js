@@ -8,7 +8,7 @@ const communityMembers = [
     phone: '+63 2 8123 4567',
     facebook: 'https://facebook.com/techlabsmanila',
     tags: ['company', 'robotics', 'software'],
-    profileImage: '/MakersClub/images/Stealth_No_Image.png',
+    profileImage: 'https://innovationhub-ph.github.io/MakersClub/images/Stealth_No_Image.png',
     location: {
       lat: 14.5547,
       lng: 120.9947,
