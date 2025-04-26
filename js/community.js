@@ -8,7 +8,7 @@ const communityMembers = [
     phone: '+63 2 8123 4567',
     facebook: 'https://facebook.com/techlabsmanila',
     tags: ['company', 'robotics', 'software'],
-    profileImage: '/images/placeholders/Stealth_No_Image.png',
+    profileImage: '/images/Stealth_No_Image.png',
     location: {
       lat: 14.5547,
       lng: 120.9947,
@@ -23,7 +23,7 @@ const communityMembers = [
     phone: '+63 2 8234 5678',
     facebook: 'https://facebook.com/robocore',
     tags: ['company', 'robotics', 'hardware'],
-    profileImage: '/images/placeholders/Stealth_No_Image.png',
+    profileImage: '/images/Stealth_No_Image.png',
     location: {
       lat: 14.5580,
       lng: 120.9890,
@@ -38,7 +38,7 @@ const communityMembers = [
     phone: '+63 2 8524 4611',
     facebook: 'https://facebook.com/dlsu',
     tags: ['education', 'robotics', 'research'],
-    profileImage: 'https://placehold.co/80x80/252525/white?text=DLSU',
+    profileImage: '/images/Stealth_No_Image.png',
     location: {
       lat: 14.5648,
       lng: 120.9932,
@@ -53,7 +53,7 @@ const communityMembers = [
     phone: '+63 2 8247 5000',
     facebook: 'https://facebook.com/mapua',
     tags: ['education', 'robotics', 'engineering'],
-    profileImage: 'https://placehold.co/80x80/252525/white?text=MU',
+    profileImage: '/images/Stealth_No_Image.png',
     location: {
       lat: 14.5907,
       lng: 120.9748,
@@ -68,7 +68,7 @@ const communityMembers = [
     phone: '+63 917 123 4567',
     facebook: 'https://facebook.com/jonprado',
     tags: ['individual', 'hardware', 'software'],
-    profileImage: 'https://placehold.co/80x80/252525/white?text=JP',
+    profileImage: '/images/Stealth_No_Image.png',
     location: {
       lat: 14.5695,
       lng: 120.9822,
@@ -83,7 +83,7 @@ const communityMembers = [
     phone: '+63 918 234 5678',
     facebook: 'https://facebook.com/mariasantos',
     tags: ['individual', 'robotics', 'software'],
-    profileImage: 'https://placehold.co/80x80/252525/white?text=MS',
+    profileImage: '/images/Stealth_No_Image.png',
     location: {
       lat: 14.5542,
       lng: 120.9965,
