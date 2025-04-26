@@ -38,7 +38,7 @@ const communityMembers = [
     phone: '+63 2 8524 4611',
     facebook: 'https://facebook.com/dlsu',
     tags: ['education', 'robotics', 'research'],
-    profileImage: 'https://placehold.co/80x80/252525/white?text=DLSU',
+    profileImage: '/assets/images/Stealth_No_Image.png',
     location: {
       lat: 14.5648,
       lng: 120.9932,
