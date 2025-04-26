@@ -7,7 +7,7 @@ const jobs = [
         location: 'Makati, MNL',
         remote: false,
         tags: ['robotics', 'hardware'],
-        description: 'Describe the Job openning here...'
+        description: 'Describe the Job opening here...'
     },
     {
         title: 'Software Developer',
@@ -21,7 +21,7 @@ const jobs = [
     {
         title: 'Mechatronics Intern',
         company: 'Innovation Labs',
-        logo: 'https://placehold.co/80x80/252525/white?text=IL',
+        logo: '/assets/images/Stealth_No_Image.png',
         location: 'Boston, MA',
         remote: false,
         tags: ['internship', 'hardware', 'software'],
@@ -30,7 +30,7 @@ const jobs = [
     {
         title: 'Control Systems Engineer',
         company: 'Virtual Mechanics',
-        logo: 'https://placehold.co/80x80/252525/white?text=VM',
+        logo: '/assets/images/Stealth_No_Image.png',
         location: 'Remote',
         remote: true,
         tags: ['software', 'hardware'],
