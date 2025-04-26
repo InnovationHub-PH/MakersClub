@@ -3,7 +3,7 @@ const jobs = [
     {
         title: 'Job Title',
         company: 'Company Name',
-        logo: '/images/placeholders/Stealth_No_Image.png', 
+        logo: '/assets/images/Stealth_No_Image.png',
         location: 'Makati, MNL',
         remote: false,
         tags: ['robotics', 'hardware'],
@@ -12,7 +12,7 @@ const jobs = [
     {
         title: 'Software Developer',
         company: 'Remote Robotics',
-        logo: 'https://placehold.co/80x80/252525/white?text=RR',
+        logo: '/assets/images/Stealth_No_Image.png',
         location: 'Remote',
         remote: true,
         tags: ['software', 'robotics'],
