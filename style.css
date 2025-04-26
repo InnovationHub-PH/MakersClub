@@ -308,12 +308,14 @@ h2 {
   display: grid;
   gap: 3rem;
   background-color: var(--bg-color);
+  margin-bottom: 4rem;
 }
 
 .about-section {
   border: 3px solid var(--border-color);
   padding: 2rem;
   background-color: var(--bg-color);
+  margin-bottom: 4rem;
 }
 
 .brutalist-list {
@@ -750,7 +752,7 @@ footer {
     content: '×';
     font-size: 2rem;
     line-height: 0.5;
-    color: var(--text-color);
+    color: var(--bg-color);
   }
 
   h1 {

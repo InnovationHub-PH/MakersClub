@@ -33,7 +33,7 @@ const communityMembers = [
   {
     name: 'De La Salle University',
     category: 'EDUCATIONAL INSTITUTIONS',
-    website: 'https://dlsu.edu.ph',
+    website: 'https://www.dlsu.edu.ph',
     email: 'info@dlsu.edu.ph',
     phone: '+63 2 8524 4611',
     facebook: 'https://facebook.com/dlsu',
