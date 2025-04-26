@@ -608,6 +608,31 @@ footer {
   border-color: var(--accent-color);
 }
 
+.member-header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.member-profile-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.member-title-info {
+  flex: 1;
+}
+
+.member-title-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
 .member-info {
   margin: 1rem 0;
 }
@@ -619,6 +644,7 @@ footer {
 .member-location {
   font-style: italic;
   margin-bottom: 1rem;
+  opacity: 0.8;
 }
 
 .member-tags {
@@ -771,5 +797,18 @@ footer {
   .job-title-info {
     min-height: auto;
     gap: 0.5rem;
+  }
+
+  .member-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .member-profile-image {
+    margin: 0 auto;
+  }
+
+  .member-title-info {
+    text-align: center;
   }
 }

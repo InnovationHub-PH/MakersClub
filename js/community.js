@@ -8,6 +8,7 @@ const communityMembers = [
     phone: '+63 2 8123 4567',
     facebook: 'https://facebook.com/techlabsmanila',
     tags: ['company', 'robotics', 'software'],
+    profileImage: '/images/placeholders/Stealth_No_Image.png',
     location: {
       lat: 14.5547,
       lng: 120.9947,
@@ -22,6 +23,7 @@ const communityMembers = [
     phone: '+63 2 8234 5678',
     facebook: 'https://facebook.com/robocore',
     tags: ['company', 'robotics', 'hardware'],
+    profileImage: '/images/placeholders/Stealth_No_Image.png',
     location: {
       lat: 14.5580,
       lng: 120.9890,
@@ -36,6 +38,7 @@ const communityMembers = [
     phone: '+63 2 8524 4611',
     facebook: 'https://facebook.com/dlsu',
     tags: ['education', 'robotics', 'research'],
+    profileImage: 'https://placehold.co/80x80/252525/white?text=DLSU',
     location: {
       lat: 14.5648,
       lng: 120.9932,
@@ -50,6 +53,7 @@ const communityMembers = [
     phone: '+63 2 8247 5000',
     facebook: 'https://facebook.com/mapua',
     tags: ['education', 'robotics', 'engineering'],
+    profileImage: 'https://placehold.co/80x80/252525/white?text=MU',
     location: {
       lat: 14.5907,
       lng: 120.9748,
@@ -64,6 +68,7 @@ const communityMembers = [
     phone: '+63 917 123 4567',
     facebook: 'https://facebook.com/jonprado',
     tags: ['individual', 'hardware', 'software'],
+    profileImage: 'https://placehold.co/80x80/252525/white?text=JP',
     location: {
       lat: 14.5695,
       lng: 120.9822,
@@ -78,6 +83,7 @@ const communityMembers = [
     phone: '+63 918 234 5678',
     facebook: 'https://facebook.com/mariasantos',
     tags: ['individual', 'robotics', 'software'],
+    profileImage: 'https://placehold.co/80x80/252525/white?text=MS',
     location: {
       lat: 14.5542,
       lng: 120.9965,
@@ -120,14 +126,19 @@ let activeFilters = new Set();
 function createMemberCard(member) {
   return `
     <div class="member-card" data-member="${member.name}" data-tags="${member.tags.join(' ')}">
-      <h3>${member.name}</h3>
+      <div class="member-header">
+        <img src="${member.profileImage}" alt="${member.name}" class="member-profile-image">
+        <div class="member-title-info">
+          <h3>${member.name}</h3>
+          ${member.location ? `<p class="member-location">${member.location.address}</p>` : ''}
+        </div>
+      </div>
       <div class="member-info">
         ${member.website ? `<p>Website: <a href="${member.website}" target="_blank">${member.website}</a></p>` : ''}
         ${member.email ? `<p>Email: <a href="mailto:${member.email}">${member.email}</a></p>` : ''}
         ${member.phone ? `<p>Phone: <a href="tel:${member.phone}">${member.phone}</a></p>` : ''}
         ${member.facebook ? `<p>Facebook: <a href="${member.facebook}" target="_blank">${member.facebook.replace('https://facebook.com/', '@')}</a></p>` : ''}
       </div>
-      ${member.location ? `<p class="member-location">${member.location.address}</p>` : ''}
       <div class="member-tags">
         ${member.tags.map(tag => `<span class="tag">${tag.toUpperCase()}</span>`).join('')}
       </div>

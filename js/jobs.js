@@ -3,7 +3,7 @@ const jobs = [
     {
         title: 'Job Title',
         company: 'Company Name',
-        logo: 'https://placehold.co/80x80/252525/white?text=CN',
+        logo: '/images/placeholders/Stealth_No_Image.png', 
         location: 'Makati, MNL',
         remote: false,
         tags: ['robotics', 'hardware'],
