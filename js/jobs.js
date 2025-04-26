@@ -3,7 +3,7 @@ const jobs = [
     {
         title: 'Job Title',
         company: 'Company Name',
-        logo: '/images/Stealth_No_Image.png', 
+        logo: 'InnovationHub-PH/MakersClub/tree/main/images/Stealth_No_Image.png', 
         location: 'Makati, MNL',
         remote: false,
         tags: ['robotics', 'hardware'],
