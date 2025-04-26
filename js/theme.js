@@ -9,16 +9,19 @@ const updateTheme = (theme) => {
   // Update button icon
   const moonIcon = document.getElementById('moonIcon');
   const sunIcon = document.getElementById('sunIcon');
+  const icon = document.getElementById('icon');
 
   if (theme === "dark") {
-    document.body.style.backgroundColor = "#222";
+    document.body.style.backgroundColor = "#000000";
     moonIcon.style.display = "none";
     sunIcon.style.display = "block";
+    sunIcon.setAttribute('stroke', '#000000'); // Make sun icon black in dark mode
     document.getElementById('themeToggle').setAttribute("aria-label", "Switch to light mode");
   } else {
     document.body.style.backgroundColor = "#fff";
     sunIcon.style.display = "none";
     moonIcon.style.display = "block";
+    moonIcon.setAttribute('stroke', '#ffffff'); // Make moon icon white in light mode
     document.getElementById('themeToggle').setAttribute("aria-label", "Switch to dark mode");
   }
 };

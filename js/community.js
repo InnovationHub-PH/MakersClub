@@ -5,6 +5,7 @@ const communityMembers = [
     category: 'COMPANIES',
     website: 'https://techlabs.ph',
     email: 'contact@techlabs.ph',
+    phone: '+63 2 8123 4567',
     facebook: 'https://facebook.com/techlabsmanila',
     tags: ['company', 'robotics', 'software'],
     location: {
@@ -18,6 +19,7 @@ const communityMembers = [
     category: 'COMPANIES',
     website: 'https://robocore.ph',
     email: 'info@robocore.ph',
+    phone: '+63 2 8234 5678',
     facebook: 'https://facebook.com/robocore',
     tags: ['company', 'robotics', 'hardware'],
     location: {
@@ -31,6 +33,7 @@ const communityMembers = [
     category: 'EDUCATIONAL INSTITUTIONS',
     website: 'https://dlsu.edu.ph',
     email: 'info@dlsu.edu.ph',
+    phone: '+63 2 8524 4611',
     facebook: 'https://facebook.com/dlsu',
     tags: ['education', 'robotics', 'research'],
     location: {
@@ -44,6 +47,7 @@ const communityMembers = [
     category: 'EDUCATIONAL INSTITUTIONS',
     website: 'https://mapua.edu.ph',
     email: 'info@mapua.edu.ph',
+    phone: '+63 2 8247 5000',
     facebook: 'https://facebook.com/mapua',
     tags: ['education', 'robotics', 'engineering'],
     location: {
@@ -57,6 +61,7 @@ const communityMembers = [
     category: 'INDIVIDUALS',
     website: 'https://jonprado.com',
     email: 'jon@example.com',
+    phone: '+63 917 123 4567',
     facebook: 'https://facebook.com/jonprado',
     tags: ['individual', 'hardware', 'software'],
     location: {
@@ -70,6 +75,7 @@ const communityMembers = [
     category: 'INDIVIDUALS',
     website: 'https://mariasantos.dev',
     email: 'maria@example.com',
+    phone: '+63 918 234 5678',
     facebook: 'https://facebook.com/mariasantos',
     tags: ['individual', 'robotics', 'software'],
     location: {
@@ -115,15 +121,16 @@ function createMemberCard(member) {
   return `
     <div class="member-card" data-member="${member.name}" data-tags="${member.tags.join(' ')}">
       <h3>${member.name}</h3>
-      <div class="member-links">
-        ${member.website ? `<a href="${member.website}" target="_blank" class="member-link">WEBSITE</a>` : ''}
-        ${member.email ? `<a href="mailto:${member.email}" class="member-link">EMAIL</a>` : ''}
-        ${member.facebook ? `<a href="${member.facebook}" target="_blank" class="member-link">FACEBOOK</a>` : ''}
+      <div class="member-info">
+        ${member.website ? `<p>Website: <a href="${member.website}" target="_blank">${member.website}</a></p>` : ''}
+        ${member.email ? `<p>Email: <a href="mailto:${member.email}">${member.email}</a></p>` : ''}
+        ${member.phone ? `<p>Phone: <a href="tel:${member.phone}">${member.phone}</a></p>` : ''}
+        ${member.facebook ? `<p>Facebook: <a href="${member.facebook}" target="_blank">${member.facebook.replace('https://facebook.com/', '@')}</a></p>` : ''}
       </div>
+      ${member.location ? `<p class="member-location">${member.location.address}</p>` : ''}
       <div class="member-tags">
         ${member.tags.map(tag => `<span class="tag">${tag.toUpperCase()}</span>`).join('')}
       </div>
-      ${member.location ? `<p class="member-location">${member.location.address}</p>` : ''}
     </div>
   `;
 }
