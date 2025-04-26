@@ -15,7 +15,7 @@
   --primary-color: #358C7C;  /* Green */
   --secondary-color: #F2C879; /* Yellow */
   --accent-color: #9305F2;   /* Purple */
-  --nav-height: 100px; /* Updated to account for increased padding */
+  --nav-height: 100px;
 }
 
 [data-theme="dark"] {
@@ -47,12 +47,12 @@ body {
   left: 0;
   right: 0;
   background-color: var(--bg-color);
-  z-index: 1000;
+  z-index: 1001;
   border-bottom: 4px solid var(--border-color);
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  padding: 20px 2rem; /* Increased padding top and bottom */
+  padding: 20px 2rem;
   transition: background-color 0.3s;
 }
 
@@ -93,7 +93,6 @@ body {
   height: 3px;
   background-color: var(--text-color);
   margin: 5px 0;
-  transition: all 0.3s ease;
 }
 
 /* Navigation */
@@ -519,37 +518,147 @@ input:checked + .slider:before {
   box-shadow: 2px 2px 0 var(--border-color);
 }
 
-/* Resources */
-.resources-content {
-  display: grid;
-  gap: 3rem;
-}
-
-.resource-category {
+/* Community Styles */
+.community-search {
+  margin-bottom: 2rem;
   border: 3px solid var(--border-color);
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
-.resource-list {
-  list-style: none;
-  margin-top: 1rem;
-}
-
-.resource-link {
-  display: block;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
+.search-input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
   color: var(--text-color);
-  text-decoration: none;
-  border-left: 3px solid var(--border-color);
-  transition: all 0.2s ease;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.resource-link:hover {
+.map-container {
+  margin-bottom: 2rem;
+  border: 3px solid var(--border-color);
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+#communityMap {
+  height: 400px;
+  width: 100%;
+}
+
+.leaflet-control-container {
+  z-index: 1000;
+}
+
+.community-directory {
+  display: grid;
+  gap: 2rem;
+}
+
+.directory-category {
+  border: 3px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+.directory-category h2 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: none;
+}
+
+.directory-category h2::after {
+  content: '−';
+  font-size: 1.5rem;
+}
+
+.directory-category.collapsed h2::after {
+  content: '+';
+}
+
+.directory-category.collapsed .member-grid {
+  display: none;
+}
+
+.member-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.member-card {
+  border: 2px solid var(--border-color);
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-2px);
+}
+
+.member-card.selected {
+  background-color: var(--border-color);
+  color: var(--bg-color);
+}
+
+.member-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.member-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.member-link {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.member-card.selected .member-link {
+  border-color: var(--bg-color);
+  color: var(--bg-color);
+}
+
+.member-link:hover {
   background: var(--border-color);
   color: var(--bg-color);
-  transform: translateX(10px);
+}
+
+.member-card.selected .member-link:hover {
+  background: var(--bg-color);
+  color: var(--border-color);
+}
+
+.member-location {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Map Marker Popup */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  border-radius: 0;
+}
+
+.leaflet-popup-tip {
+  background: var(--border-color);
 }
 
 /* Footer */
@@ -583,15 +692,12 @@ footer {
     align-items: stretch;
     padding: 1rem;
     margin: 0;
-    transform: translateY(-150%);
-    transition: transform 0.3s ease;
+    display: none;
     border-bottom: 4px solid var(--border-color);
-    visibility: hidden;
   }
 
   .main-nav.active {
-    transform: translateY(0);
-    visibility: visible;
+    display: flex;
   }
 
   .nav-link {
@@ -601,15 +707,22 @@ footer {
   }
 
   .menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 6px);
+    display: none;
   }
 
   .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
+    display: none;
   }
 
   .menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -5px);
+    display: none;
+  }
+
+  .menu-toggle.active::before {
+    content: '×';
+    font-size: 2rem;
+    line-height: 0.5;
+    color: var(--text-color);
   }
 
   h1 {
@@ -656,5 +769,13 @@ footer {
   .job-title-info {
     min-height: auto;
     gap: 0.5rem;
+  }
+
+  #communityMap {
+    height: 300px;
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Job Postings - Makers Club</title>
+    <title>Community - Makers Club</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20width%3D'16'%20height%3D'16'%20viewBox%3D'0%200%2016%2016'%20fill%3D'none'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M8.99999%204.49994V11.5H7V4.49994H8.99999Z'%20fill%3D'%239700EF'%2F%3E%3Cpath%20d%3D'M16%204.50007L9%204.50011V11.5002L7.00024%2011.5003L7%2013.5001L16.0001%2013.5L16%204.50007Z'%20fill%3D'%23348F82'%2F%3E%3Cpath%20d%3D'M9%202.5H0V11.5H7V4.5H9V2.5Z'%20fill%3D'%23FEDE7D'%2F%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -45,48 +46,53 @@
     </div>
 
     <div class="container">
-      <h1>JOB POSTINGS</h1>
+      <h1>COMMUNITY</h1>
 
-      <section class="about-content">
-        <div class="about-section">
-          <h2>Hiring?</h2>
-          <p>Share your job openning here. Send us an Email at: <a href="mailto:someone@example.com">makewithconfidence@gmail.com</a></p>
+      <section class="community-search">
+        <input type="text" id="searchInput" placeholder="Search members..." class="search-input">
+        <div class="tag-buttons">
+          <button class="tag-btn" data-tag="company">COMPANIES</button>
+          <button class="tag-btn" data-tag="individual">INDIVIDUALS</button>
+          <button class="tag-btn" data-tag="education">EDUCATION</button>
+          <button class="tag-btn" data-tag="robotics">ROBOTICS</button>
+          <button class="tag-btn" data-tag="software">SOFTWARE</button>
+          <button class="tag-btn" data-tag="hardware">HARDWARE</button>
         </div>
       </section>
 
-      <section class="jobs-filter">
-        <div class="filter-container">
-          <div class="tags-filter">
-            <h3>FILTER BY TAGS:</h3>
-            <div class="tag-buttons">
-              <button class="tag-btn" data-tag="robotics">ROBOTICS</button>
-              <button class="tag-btn" data-tag="software">SOFTWARE</button>
-              <button class="tag-btn" data-tag="hardware">HARDWARE</button>
-              <button class="tag-btn" data-tag="internship">INTERNSHIP</button>
-              <button class="tag-btn" data-tag="internship">INDUSTRIAL DESIGN</button>
-              <button class="tag-btn" data-tag="internship">MANUFACTURING</button>
-              <button class="tag-btn" data-tag="internship">MECHATRONICS</button>
-            </div>
-          </div>
-          <div class="remote-toggle">
-            <label class="toggle-switch">
-              <input type="checkbox" id="remoteToggle">
-              <span class="slider"></span>
-            </label>
-            <span>REMOTE ONLY</span>
+      <div class="map-container">
+        <div id="communityMap"></div>
+      </div>
+
+      <section class="community-directory">
+        <div class="directory-category">
+          <h2>COMPANIES</h2>
+          <div class="member-grid">
+            <!-- Companies will be populated by JavaScript -->
           </div>
         </div>
-      </section>
 
-      <section class="jobs-list" id="jobsList">
-        <!-- Jobs will be populated by JavaScript -->
+        <div class="directory-category">
+          <h2>INDIVIDUALS</h2>
+          <div class="member-grid">
+            <!-- Individuals will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="directory-category">
+          <h2>EDUCATIONAL INSTITUTIONS</h2>
+          <div class="member-grid">
+            <!-- Educational institutions will be populated by JavaScript -->
+          </div>
+        </div>
       </section>
 
       <footer>
         <p>INNOVATION AT THE INTERSECTION OF DISCIPLINES</p>
       </footer>
     </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/jobs.js"></script>
+    <script src="js/community.js"></script>
   </body>
 </html>
