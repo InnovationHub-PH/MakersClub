@@ -214,9 +214,6 @@ h2::before {
   background-color: var(--bg-color);
 }
 
-.team-member h3 {
-  font-family: 'Space Grotesk', sans-serif;
-}
 
 
 /* Search Input Styling */
@@ -345,7 +342,6 @@ input[type="radio"]:checked::before {
   color: var(--text-color);
   font-weight: bold;
   text-align: center;
-  font-family: 'Space Grotesk', sans-serif;
 }
 
 .social-button:hover {
@@ -401,14 +397,12 @@ input[type="radio"]:checked::before {
 .card h3 {
   font-size: 1.5rem;
   margin: 0;
-  font-family: 'Space Grotesk', sans-serif;
   line-height: 1.2;
 }
 
 .card h4 {
   font-size: 1.2rem;
   margin: 0.2rem 0;
-  font-family: 'Space Grotesk', sans-serif;
   line-height: 1.2;
 }
 
@@ -425,7 +419,6 @@ input[type="radio"]:checked::before {
   background: none;
   border: none;
   color: var(--text-color);
-  font-family: 'Space Grotesk', sans-serif;
   font-size: .9rem;
   padding: 0;
   cursor: pointer;
