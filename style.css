@@ -12,7 +12,7 @@
 }
 
 :root {
-  --cd-color:: #ffffff;
+  --cd-color: #ffffff;
   --bg-color: #ffffff;
   --text-color: #1a1a1a;
   --border-color: #2563eb;
@@ -27,7 +27,7 @@
 }
 
 [data-theme="dark"] {
-  --cd-color:: rgba(0, 255, 0, 0.05);
+  --cd-color: rgba(0, 255, 0, 0.05);
   --bg-color: #000000;
   --text-color: #00FF00;
   --border-color: #00FF00;
