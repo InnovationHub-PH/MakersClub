@@ -58,6 +58,32 @@ body {
   text-shadow: var(--terminal-shadow);
 }
 
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+h1::before {
+  content: ">";
+  margin-right: 1rem;
+  color: var(--secondary-color);
+}
+
+h2::before {
+  content: ">>";
+  margin-right: 1rem;
+  color: var(--secondary-color);
+}
+
 /* Navigation */
 .nav-container {
   position: fixed;
@@ -183,24 +209,16 @@ body {
   position: relative;
 }
 
-/* Headers */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-mono);
+/* Animations */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.header-text h1::after {
+  content: "_";
+  animation: cursor-blink 1s infinite;
   color: var(--text-color);
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-h1::before {
-  content: ">";
-  margin-right: 1rem;
-  color: var(--secondary-color);
-}
-
-h2::before {
-  content: ">>";
-  margin-right: 1rem;
-  color: var(--secondary-color);
 }
 
 /* Team Grid */
@@ -217,8 +235,6 @@ h2::before {
   text-align: center;
   background-color: var(--bg-color);
 }
-
-
 
 /* Search Input Styling */
 .search-input {
@@ -358,8 +374,6 @@ input[type="radio"]:checked::before {
 
 
 /* Cards */
-
-
 .card {
   border: 1px solid var(--border-color);
   padding: 1.5rem;
@@ -410,7 +424,6 @@ input[type="radio"]:checked::before {
   line-height: 1.2;
 }
 
-
 .description-container {
   margin-bottom: 1rem;
 }
@@ -434,8 +447,6 @@ input[type="radio"]:checked::before {
 }
 
 /* Member Cards */
-
-
 .member-card:hover {
   transform: translateX(5px);
   cursor: pointer;
@@ -578,13 +589,6 @@ footer {
 .meeting-info {
   margin-bottom: 4rem;
   background-color: var(--bg-color);
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  border-bottom: 4px solid var(--border-color);
-  display: inline-block;
 }
 
 .info-box {
