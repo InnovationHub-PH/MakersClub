@@ -17,7 +17,7 @@
   --text-color: #1a1a1a;
   --border-color: #2563eb;
   --primary-color: #2563eb;
-  --secondary-color: #FF00FF;
+  --secondary-color: #420480;
   --accent-color: #059669;
   --nav-height: 60px;
   --nav-element-height: 42px;
@@ -29,6 +29,7 @@
 [data-theme="dark"] {
   --card-bg-color: rgba(0, 255, 0, 0.05);
   --bg-color: #000000;
+  --secondary-color: #FF00FF;
   --text-color: #00FF00;
   --border-color: #00FF00;
   --nav-bg: #0C0C0C;
