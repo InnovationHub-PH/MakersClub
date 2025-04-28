@@ -55,8 +55,16 @@
   height: 100%;
   background: repeating-linear-gradient(
     0deg,
+    /*
     rgba(0, 255, 0, 0.03) 0px,
     rgba(0, 255, 0, 0.03) 1px,
+    */
+
+    /*test*/
+    var(--card-bg-color) 0px,
+    var(--card-bg-color) 1px,
+    /*test*/
+     
     transparent 1px,
     transparent 2px
   );
