@@ -170,7 +170,7 @@ body {
   color: var(--bg-color);
 }
 
-  [data-theme="dark"] .theme-toggle {
+[data-theme="dark"] .theme-toggle {
   border-color: var(--text-color);
 }
 
