@@ -36,6 +36,15 @@
   --link-color: #ffffff;
 }
 
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
 /* I dont know if this will work */
 .container::before {
   content: "";
@@ -54,7 +63,6 @@
   pointer-events: none;
   z-index: -1;
 }
-
 
 /* Add general link styles */
 a {
@@ -227,15 +235,6 @@ h2::before {
   border-color: var(--text-color);
 }
 
-/* Container */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  position: relative;
-}
-
 /* Animations */
 @keyframes cursor-blink {
   0%, 100% { opacity: 0; }
@@ -267,18 +266,26 @@ h2::before {
 .search-input {
   width: 100%;
   padding: 1rem;
-  background-color: var(--bg-color);
+  background-color: var(--card-bg-color);
   border: 1px solid var(--border-color);
   color: var(--text-color);
   font-family: var(--font-mono);
   font-size: 1rem;
   margin-bottom: 1.5rem;
   box-shadow: var(--terminal-shadow);
+  position: relative;
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--secondary-color);
+}
+
+.search-input:focus::after {
+  content: "_";
+  display: inline-block;
+  animation: cursor-blink 1s infinite;
+  margin-left: 2px;
 }
 
 .search-input::placeholder {
@@ -398,7 +405,6 @@ input[type="radio"]:checked::before {
   box-shadow: 4px 4px 0 var(--border-color);
   text-decoration: none;
 }
-
 
 /* Cards */
 .card {
@@ -560,9 +566,6 @@ footer {
     text-align: center;
   }
 }
-
-
-
 
 /* About Content */
 .about-content {
