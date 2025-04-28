@@ -24,31 +24,23 @@
         <a href="about.html" class="nav-link">ABOUT</a>
       </nav>
 
-      <button id="themeToggle" class="theme-toggle" aria-label="Switch to dark mode">
-        <svg id="icon" width="40" height="40" viewBox="0 0 24 24" fill="none" 
-         stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path id="moonIcon" d="M12 2a1 1 0 0 1 .99 1.15 6 6 0 1 0 7.86 7.86A1 1 0 0 1 22 12a10 10 0 1 1-10-10z"/>
-          <g id="sunIcon" stroke="white" style="display: none;">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </g>
-        </svg>
+      <button id="themeToggle" class="theme-toggle" aria-label="Switch theme">
+        <pre class="theme-icon">[LIGHT]
+[●|○]</pre>
       </button>
+      
     </div>
 
     <div class="container">
       <h1>JOB POSTINGS</h1>
 
+      <section class="jobs-search">
+        <input type="text" id="searchInput" placeholder="Search jobs..." class="search-input">
+      </section>
+
       <section class="jobs-filter">
         <div class="filter-container">
-          <div class="tags-filter">
+         <div class="tags-filter">
             <h3>FILTER BY TAGS:</h3>
             <div class="tag-buttons">
               <button class="tag-btn" data-tag="robotics">ROBOTICS</button>
@@ -59,13 +51,10 @@
               <button class="tag-btn" data-tag="manufacturing">MANUFACTURING</button>
               <button class="tag-btn" data-tag="mechatronics">MECHATRONICS</button>
             </div>
-          </div>
+         </div> 
           <div class="remote-toggle">
-            <label class="toggle-switch">
-              <input type="checkbox" id="remoteToggle">
-              <span class="slider"></span>
-            </label>
-            <span>REMOTE ONLY</span>
+            <input type="radio" id="remoteToggle" name="remote">
+            <label for="remoteToggle">REMOTE ONLY</label>
           </div>
         </div>
       </section>
@@ -80,7 +69,7 @@
           <li>Reach both experienced professionals and emerging talent</li>
         </ul>
         <div class="social-links" style="margin-top: 2rem;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSefB-Hh6G3dLNFIdxcCBmx6w-98ZC8GMeHZ56m4VSK98vUjdQ/viewform?usp=header" target="_blank" class="social-button">POST A JOB</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSefB-Hh6G3dLNFIdxcCBmx6w-98ZC8GMeHZ56m4VSK98vUjdQ/viewform?usp=header" target="_blank" class="sqr-btn">POST A JOB</a>
         </div>
       </section>
 

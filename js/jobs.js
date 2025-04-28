@@ -41,11 +41,13 @@ const jobs = [
 // State
 let activeFilters = new Set();
 let remoteOnly = false;
+let searchTerm = '';
 
 // DOM Elements
 const jobsList = document.getElementById('jobsList');
 const tagButtons = document.querySelectorAll('.tag-btn');
 const remoteToggle = document.getElementById('remoteToggle');
+const searchInput = document.getElementById('searchInput');
 
 // Functions
 function truncateWords(text, wordCount) {
@@ -85,13 +87,21 @@ function createJobCard(job) {
                 <p class="description full" style="display: none;">${fullDescription}</p>
                 ${!isExpanded ? `<button class="read-more">READ MORE</button>` : ''}
             </div>
-            <a href="#" class="apply-btn">APPLY NOW</a>
+            <a href="#" class="sqr-btn">APPLY NOW</a>
         </div>
     `;
 }
 
 function filterJobs() {
     const filteredJobs = jobs.filter(job => {
+        const matchesSearch = (
+            job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+        
+        if (!matchesSearch) return false;
         if (remoteOnly && !job.remote) return false;
         if (activeFilters.size === 0) return true;
         return job.tags.some(tag => activeFilters.has(tag));
@@ -134,8 +144,14 @@ tagButtons.forEach(button => {
     });
 });
 
-remoteToggle.addEventListener('change', () => {
-    remoteOnly = remoteToggle.checked;
+remoteToggle.addEventListener('click', () => {
+    remoteOnly = !remoteOnly;
+    remoteToggle.checked = remoteOnly;
+    filterJobs();
+});
+
+searchInput.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
     filterJobs();
 });
 

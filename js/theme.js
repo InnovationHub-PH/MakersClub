@@ -6,22 +6,14 @@ const updateTheme = (theme) => {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
   
-  // Update button icon
-  const moonIcon = document.getElementById('moonIcon');
-  const sunIcon = document.getElementById('sunIcon');
-  const icon = document.getElementById('icon');
-
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('.theme-icon');
+  
   if (theme === "dark") {
-    document.body.style.backgroundColor = "#000000";
-    moonIcon.style.display = "none";
-    sunIcon.style.display = "block";
-    sunIcon.setAttribute('stroke', '#000000'); // Make sun icon black in dark mode
+    themeIcon.textContent = '[DARK]\n[○|●]';
     document.getElementById('themeToggle').setAttribute("aria-label", "Switch to light mode");
   } else {
-    document.body.style.backgroundColor = "#fff";
-    sunIcon.style.display = "none";
-    moonIcon.style.display = "block";
-    moonIcon.setAttribute('stroke', '#ffffff'); // Make moon icon white in light mode
+    themeIcon.textContent = '[LIGHT]\n[●|○]';
     document.getElementById('themeToggle').setAttribute("aria-label", "Switch to dark mode");
   }
 };
