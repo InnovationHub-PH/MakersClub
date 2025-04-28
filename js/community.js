@@ -125,10 +125,10 @@ let activeFilters = new Set();
 
 function createMemberCard(member) {
   return `
-    <div class="member-card" data-member="${member.name}" data-tags="${member.tags.join(' ')}">
-      <div class="member-header">
-        <img src="${member.profileImage}" alt="${member.name}" class="member-profile-image">
-        <div class="member-title-info">
+    <div class="card member-card" data-member="${member.name}" data-tags="${member.tags.join(' ')}">
+      <div class="card-header">
+        <img src="${member.profileImage}" alt="${member.name}" class="card-logo">
+        <div class="title-info">
           <h3>${member.name}</h3>
           ${member.location ? `<p class="member-location">${member.location.address}</p>` : ''}
         </div>
@@ -139,7 +139,7 @@ function createMemberCard(member) {
         ${member.phone ? `<p>Phone: <a href="tel:${member.phone}">${member.phone}</a></p>` : ''}
         ${member.facebook ? `<p>Facebook: <a href="${member.facebook}" target="_blank">${member.facebook.replace('https://facebook.com/', '@')}</a></p>` : ''}
       </div>
-      <div class="member-tags">
+      <div class="tags">
         ${member.tags.map(tag => `<span class="tag">${tag.toUpperCase()}</span>`).join('')}
       </div>
     </div>

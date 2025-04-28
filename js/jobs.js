@@ -70,10 +70,10 @@ function createJobCard(job) {
     const isExpanded = truncatedDescription === fullDescription;
 
     return `
-        <div class="job-card">
-            <div class="job-header">
-                <img src="${job.logo}" alt="${job.company} logo" class="company-logo">
-                <div class="job-title-info">
+        <div class="card">
+            <div class="card-header">
+                <img src="${job.logo}" alt="${job.company} logo" class="card-logo">
+                <div class="title-info">
                     <h3>${job.title}</h3>
                     <h4>${job.company}</h4>
                     <p class="location">${job.location}</p>
