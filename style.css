@@ -12,7 +12,8 @@
 }
 
 :root {
-  --cd-color: #ffffff;
+  :root {
+  --card-bg-color: rgba(200, 200, 210, 0.2); /* A cool grey for light mode */
   --bg-color: #ffffff;
   --text-color: #1a1a1a;
   --border-color: #2563eb;
@@ -27,7 +28,7 @@
 }
 
 [data-theme="dark"] {
-  --cd-color: rgba(0, 255, 0, 0.05);
+  --card-bg-color: rgba(0, 255, 0, 0.05);
   --bg-color: #000000;
   --text-color: #00FF00;
   --border-color: #00FF00;
@@ -363,7 +364,7 @@ input[type="radio"]:checked::before {
   border: 1px solid var(--border-color);
   padding: 1.5rem;
   margin-bottom: 2rem;
-  background-color: var(--cd-color);
+  background-color: var(--card-bg-color);
   box-shadow: var(--terminal-shadow);
   transition: transform 0.2s ease;
 }
