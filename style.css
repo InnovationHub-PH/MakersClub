@@ -12,6 +12,7 @@
 }
 
 :root {
+  --cd-color:: #ffffff;
   --bg-color: #ffffff;
   --text-color: #1a1a1a;
   --border-color: #2563eb;
@@ -26,6 +27,7 @@
 }
 
 [data-theme="dark"] {
+  --cd-color:: rgba(0, 255, 0, 0.05);
   --bg-color: #000000;
   --text-color: #00FF00;
   --border-color: #00FF00;
@@ -361,7 +363,7 @@ input[type="radio"]:checked::before {
   border: 1px solid var(--border-color);
   padding: 1.5rem;
   margin-bottom: 2rem;
-  background-color: var(--bg-color);
+  background-color: var(--cd-color);
   box-shadow: var(--terminal-shadow);
   transition: transform 0.2s ease;
 }
