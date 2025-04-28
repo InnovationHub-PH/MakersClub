@@ -13,7 +13,7 @@
 
 :root {
   :root {
-  --card-bg-color: rgba(200, 200, 210, 0.2); /* A cool grey for light mode */
+  --card-bg-color: rgba(180, 190, 200, 0.15); /* A cool grey for light mode */
   --bg-color: #ffffff;
   --text-color: #1a1a1a;
   --border-color: #2563eb;
