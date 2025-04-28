@@ -399,6 +399,22 @@ input[type="radio"]:checked::before {
   text-decoration: none;
 }
 
+/*
+  .job-header,
+  .member-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .job-title-info,
+  .member-title-info {
+    width: 100%;
+    text-align: center;
+  }
+}
+*/
+
 
 /* Cards */
 .card {
@@ -416,6 +432,8 @@ input[type="radio"]:checked::before {
   flex-direction: column;
   height: 80px;
   padding: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .card-logo {
@@ -427,6 +445,9 @@ input[type="radio"]:checked::before {
 }
 
 .card-header {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   display: flex;
   align-items: stretch;
   gap: 1.5rem;
@@ -546,19 +567,7 @@ footer {
     margin: 0.5rem;
   }
 
-  .job-header,
-  .member-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
 
-  .job-title-info,
-  .member-title-info {
-    width: 100%;
-    text-align: center;
-  }
-}
 
 /* About Content */
 .about-content {
