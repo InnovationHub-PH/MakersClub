@@ -6,9 +6,7 @@
     <meta name="theme-color" content="#ffffff">
     <title>Makers Club</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20width%3D'16'%20height%3D'16'%20viewBox%3D'0%200%2016%2016'%20fill%3D'none'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M8.99999%204.49994V11.5H7V4.49994H8.99999Z'%20fill%3D'%239700EF'%2F%3E%3Cpath%20d%3D'M16%204.50007L9%204.50011V11.5002L7.00024%2011.5003L7%2013.5001L16.0001%2013.5L16%204.50007Z'%20fill%3D'%23348F82'%2F%3E%3Cpath%20d%3D'M9%202.5H0V11.5H7V4.5H9V2.5Z'%20fill%3D'%23FEDE7D'%2F%3E%3C/svg%3E">
-  
-    <!--<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
-   
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
     (function() {
   const theme = localStorage.getItem('theme') || 'grey';
@@ -57,8 +55,65 @@
         <h1>INNOVATION HUB</h1>
       </div>
 
+<pre><code class="language-cpp">
+        
+// Single-line comment
 
-<!--
+/*
+ * Multi-line comment
+ * Demonstrating various syntax features in C++
+ */
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;stdexcept&gt;
+
+#define PI 3.14159
+
+const double CONSTANT_VALUE = 42.0;
+
+class Circle {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    double area() const {
+        return PI * radius * radius;
+    }
+
+    std::string describe() const {
+        return "Circle with radius " + std::to_string(radius);
+    }
+};
+
+double divide(double a, double b) {
+    if (b == 0) {
+        throw std::runtime_error("Division by zero");
+    }
+    return a / b;
+}
+
+int main() {
+    std::vector&lt;Circle&gt; circles = { Circle(1.0), Circle(3.0) };
+
+    for (const auto& circle : circles) {
+        std::cout &lt;&lt; circle.describe() &lt;&lt; std::endl;
+        std::cout &lt;&lt; "Area: " &lt;&lt; circle.area() &lt;&lt; std::endl;
+
+        if (circle.area() &gt; 20.0) {
+            std::cout &lt;&lt; "Large circle!" &lt;&lt; std::endl;
+        }
+    }
+
+    return 0;
+}
+
+</code>
+</pre>
+      
       <h2>MAKERS CLUB</h2>
 
       <section class="meeting-info">
@@ -69,7 +124,7 @@
           <p>Located near the corner of Taft Ave & Pablo Ocampo St. in Manila</p>
         </div>
       </section>
--->
+
       <section class="blog-section">
         <h2>NEWS & UPDATES</h2>
         <div class="blog-search">
@@ -107,7 +162,7 @@
         <p>INNOVATION AT THE INTERSECTION OF DISCIPLINES</p>
       </footer>
     </div>
-    <script src="js/theme.js"></script>
-    <script src="js/blog.js" type="module"></script>
+    <script type="module" src="js/theme.js"></script>
+    <script type="module" src="js/blog.js"></script>
   </body>
 </html>
