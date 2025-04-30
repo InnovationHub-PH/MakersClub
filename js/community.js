@@ -9,6 +9,7 @@ const communityMembers = [
     facebook: 'https://facebook.com/techlabsmanila',
     tags: ['company', 'robotics', 'software'],
     profileImage: 'https://innovationhub-ph.github.io/MakersClub/images/Stealth_No_Image.png',
+    pdfDocument: 'https://innovationhub-ph.github.io/MakersClub/Portfolios/portfolio_Darja_Osojnik.pdf', // Example PDF URL
     location: {
       lat: 14.5547,
       lng: 120.9947,
@@ -92,9 +93,15 @@ const communityMembers = [
   }
 ];
 
+// Initialize PDF.js
+import * as pdfjsLib from 'pdfjs-dist';
+import pdfWorker from 'pdfjs-dist/build/pdf.worker?url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
+
 // Initialize map
 const map = L.map('communityMap').setView([14.5995, 120.9842], 12);
-const markers = new Map(); // Store markers by member name
+const markers = new Map();
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
@@ -118,12 +125,80 @@ communityMembers.forEach(member => {
   }
 });
 
-// Search and filter functionality
-const searchInput = document.getElementById('searchInput');
-const tagButtons = document.querySelectorAll('.tag-btn');
-let activeFilters = new Set();
+// PDF Preview Modal
+const modal = document.createElement('div');
+modal.className = 'pdf-modal';
+modal.innerHTML = `
+  <div class="pdf-modal-content">
+    <button class="close-modal">&times;</button>
+    <button class="nav-btn prev-page">←</button>
+    <canvas id="pdf-canvas"></canvas>
+    <button class="nav-btn next-page">→</button>
+    <div class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></div>
+  </div>
+`;
+document.body.appendChild(modal);
+
+let currentPdf = null;
+let currentPage = 1;
+
+async function showPdfPreview(pdfUrl, pageNumber = 1) {
+  try {
+    if (!currentPdf) {
+      const loadingTask = pdfjsLib.getDocument(pdfUrl);
+      currentPdf = await loadingTask.promise;
+    }
+
+    const page = await currentPdf.getPage(pageNumber);
+    const canvas = document.getElementById('pdf-canvas');
+    const context = canvas.getContext('2d');
+
+    const viewport = page.getViewport({ scale: 1.5 });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({
+      canvasContext: context,
+      viewport: viewport
+    }).promise;
+
+    document.getElementById('current-page').textContent = pageNumber;
+    document.getElementById('total-pages').textContent = currentPdf.numPages;
+    modal.style.display = 'flex';
+  } catch (error) {
+    console.error('Error loading PDF:', error);
+  }
+}
+
+// Event listeners for modal navigation
+document.querySelector('.close-modal').addEventListener('click', () => {
+  modal.style.display = 'none';
+  currentPdf = null;
+  currentPage = 1;
+});
+
+document.querySelector('.prev-page').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    showPdfPreview(currentPdf.url, currentPage);
+  }
+});
+
+document.querySelector('.next-page').addEventListener('click', () => {
+  if (currentPage < currentPdf.numPages) {
+    currentPage++;
+    showPdfPreview(currentPdf.url, currentPage);
+  }
+});
 
 function createMemberCard(member) {
+  const pdfPreview = member.pdfDocument ? `
+    <div class="pdf-preview" data-pdf-url="${member.pdfDocument}">
+      <canvas class="pdf-thumbnail"></canvas>
+      <button class="view-pdf-btn">View Document</button>
+    </div>
+  ` : '';
+
   return `
     <div class="card member-card" data-member="${member.name}" data-tags="${member.tags.join(' ')}">
       <div class="card-header">
@@ -139,12 +214,80 @@ function createMemberCard(member) {
         ${member.phone ? `<p>Phone: <a href="tel:${member.phone}">${member.phone}</a></p>` : ''}
         ${member.facebook ? `<p>Facebook: <a href="${member.facebook}" target="_blank">${member.facebook.replace('https://facebook.com/', '@')}</a></p>` : ''}
       </div>
+      ${pdfPreview}
       <div class="tags">
         ${member.tags.map(tag => `<span class="tag">${tag.toUpperCase()}</span>`).join('')}
       </div>
     </div>
   `;
 }
+
+// After cards are rendered, initialize PDF previews
+function initializePdfPreviews() {
+  document.querySelectorAll('.pdf-preview').forEach(async (preview) => {
+    const pdfUrl = preview.dataset.pdfUrl;
+    const canvas = preview.querySelector('.pdf-thumbnail');
+    const viewBtn = preview.querySelector('.view-pdf-btn');
+
+    try {
+      const loadingTask = pdfjsLib.getDocument(pdfUrl);
+      const pdf = await loadingTask.promise;
+      const page = await pdf.getPage(1);
+      
+      const viewport = page.getViewport({ scale: 0.5 });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      await page.render({
+        canvasContext: canvas.getContext('2d'),
+        viewport: viewport
+      }).promise;
+
+      viewBtn.addEventListener('click', () => showPdfPreview(pdfUrl));
+    } catch (error) {
+      console.error('Error loading PDF preview:', error);
+    }
+  });
+}
+
+function updateDirectory() {
+  const searchTerm = searchInput.value.toLowerCase();
+  
+  document.querySelectorAll('.member-grid').forEach(grid => {
+    grid.innerHTML = '';
+  });
+
+  communityMembers.forEach(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchTerm) ||
+                         member.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+    const matchesFilters = activeFilters.size === 0 || 
+                          member.tags.some(tag => activeFilters.has(tag));
+
+    if (matchesSearch && matchesFilters) {
+      const categoryDiv = Array.from(document.querySelectorAll('.directory-category')).find(
+        categoryDiv => categoryDiv.querySelector('h2').textContent === member.category
+      );
+      if (categoryDiv) {
+        const memberGrid = categoryDiv.querySelector('.member-grid');
+        memberGrid.insertAdjacentHTML('beforeend', createMemberCard(member));
+      }
+    }
+  });
+
+  document.querySelectorAll('.member-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const memberName = card.dataset.member;
+      highlightMember(memberName);
+    });
+  });
+
+  initializePdfPreviews();
+}
+
+// Search and filter functionality
+const searchInput = document.getElementById('searchInput');
+const tagButtons = document.querySelectorAll('.tag-btn');
+let activeFilters = new Set();
 
 function highlightMember(memberName) {
   // Remove previous selection
@@ -164,41 +307,6 @@ function highlightMember(memberName) {
   if (marker) {
     marker.openPopup();
   }
-}
-
-function updateDirectory() {
-  const searchTerm = searchInput.value.toLowerCase();
-  
-  // Clear existing content
-  document.querySelectorAll('.member-grid').forEach(grid => {
-    grid.innerHTML = '';
-  });
-
-  // Filter and display members
-  communityMembers.forEach(member => {
-    const matchesSearch = member.name.toLowerCase().includes(searchTerm) ||
-                         member.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-    const matchesFilters = activeFilters.size === 0 || 
-                          member.tags.some(tag => activeFilters.has(tag));
-
-    if (matchesSearch && matchesFilters) {
-      const categoryDiv = Array.from(document.querySelectorAll('.directory-category')).find(
-        categoryDiv => categoryDiv.querySelector('h2').textContent === member.category
-      );
-      if (categoryDiv) {
-        const memberGrid = categoryDiv.querySelector('.member-grid');
-        memberGrid.insertAdjacentHTML('beforeend', createMemberCard(member));
-      }
-    }
-  });
-
-  // Add click handlers to member cards
-  document.querySelectorAll('.member-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const memberName = card.dataset.member;
-      highlightMember(memberName);
-    });
-  });
 }
 
 // Category collapse functionality

@@ -1,5 +1,5 @@
 {
-  "name": "mechatronics-club",
+  "name": "makers-club",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vite": "^5.0.0",
-    "leaflet": "^1.9.4",
-    "fira-code": "^6.3.0"
+    "pdfjs-dist": "^4.0.379",
+    "prismjs": "^1.29.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8"
   }
 }

@@ -3,13 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff">
-    <title>Makers Club</title>
+    <title>Blog Post - Makers Club</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20width%3D'16'%20height%3D'16'%20viewBox%3D'0%200%2016%2016'%20fill%3D'none'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M8.99999%204.49994V11.5H7V4.49994H8.99999Z'%20fill%3D'%239700EF'%2F%3E%3Cpath%20d%3D'M16%204.50007L9%204.50011V11.5002L7.00024%2011.5003L7%2013.5001L16.0001%2013.5L16%204.50007Z'%20fill%3D'%23348F82'%2F%3E%3Cpath%20d%3D'M9%202.5H0V11.5H7V4.5H9V2.5Z'%20fill%3D'%23FEDE7D'%2F%3E%3C/svg%3E">
-  
-    <!--<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
-   
-    <script>
+
+   <script>
     (function() {
   const theme = localStorage.getItem('theme') || 'grey';
   document.documentElement.setAttribute('data-theme', theme);
@@ -27,18 +24,18 @@
   }
 })();
     </script>
+    
+   <!-- <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  
   <body>
     <div class="nav-container">
-      
       <button class="menu-toggle" aria-label="Toggle menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
-  
+      
       <nav class="main-nav">
         <a href="index.html" class="nav-link">HOME</a>
         <a href="jobs.html" class="nav-link">JOBS</a>
@@ -53,61 +50,15 @@
     </div>
 
     <div class="container">
-      <div class="header-text">
-        <h1>INNOVATION HUB</h1>
+      <div id="blogPost" class="blog-post">
+        <!-- Blog post content will be populated by JavaScript -->
       </div>
-
-
-<!--
-      <h2>MAKERS CLUB</h2>
-
-      <section class="meeting-info">
-        <div class="info-box">
-          <p>EVERY MONDAY</p>
-          <p>5:00 PM - 8:30 PM</p>
-          <p>@ Coffee Project</p>
-          <p>Located near the corner of Taft Ave & Pablo Ocampo St. in Manila</p>
-        </div>
-      </section>
--->
-      <section class="blog-section">
-        <h2>NEWS & UPDATES</h2>
-        <div class="blog-search">
-          <input type="text" id="blogSearch" placeholder="Search posts..." class="search-input">
-          <div class="tag-buttons" id="blogTags">
-            <!-- Tags will be populated by JavaScript -->
-          </div>
-        </div>
-        <div id="blogPosts" class="blog-grid">
-          <!-- Blog posts will be populated by JavaScript -->
-        </div>
-      </section>
-      
-      <section class="sponsors">
-        <h2>OUR PARTNERS</h2>
-        <div class="sponsor-grid">
-          <div class="sponsor">
-            <img src="https://placehold.co/200x100" alt="Sponsor 1" />
-            <h3>BECOME A PARTNER</h3>
-          </div>
-        </div>
-      </section>
-      
-      <section class="socials">
-        <h2>CONNECT</h2>
-        <div class="social-links">
-          <a href="#" class="social-button">FACEBOOK</a>
-          <a href="#" class="social-button">ZULIP</a>
-          <a href="#" class="social-button">GITHUB</a>
-          <a href="#" class="social-button">LINKEDIN</a>
-        </div>
-      </section>
 
       <footer>
         <p>INNOVATION AT THE INTERSECTION OF DISCIPLINES</p>
       </footer>
     </div>
     <script src="js/theme.js"></script>
-    <script src="js/blog.js" type="module"></script>
+    <script src="js/post.js" type="module"></script>
   </body>
 </html>
