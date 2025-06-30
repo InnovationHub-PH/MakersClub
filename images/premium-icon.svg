@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Premium Icon</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M32,12 L17.6,26.8 L7.2,30.4 L9.2,41.6 L8,52 L32,52 L56,52 L54.8,41.6 L56.8,30.4 L46.4,26.8 L32,12 Z M42,36 L32,32 L22,36 L24,26 L16,18.4 L26,16.8 L32,8 L38,16.8 L48,18.4 L40,26 L42,36 Z" fill="currentColor" fill-rule="nonzero"></path>
+    </g>
+</svg>

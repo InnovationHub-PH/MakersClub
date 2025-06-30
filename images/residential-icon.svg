@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Residential Icon</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M58,28.6 L34,12.4 C33.4,12 32.6,12 32,12.4 L8,28.6 C7.4,29 7,29.6 7,30.4 L7,52 C7,53.1 7.9,54 9,54 L55,54 C56.1,54 57,53.1 57,52 L57,30.4 C57,29.6 56.6,29 56,28.6 L58,28.6 Z M35,34 L42,34 L42,46 L35,46 L35,34 Z M28,34 L28,46 L22,46 L22,34 L28,34 Z" fill="currentColor" fill-rule="nonzero"></path>
+    </g>
+</svg>

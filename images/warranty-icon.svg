@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Warranty Icon</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M52,12 L12,12 C10.9,12 10,12.9 10,14 L10,50 C10,51.1 10.9,52 12,52 L52,52 C53.1,52 54,51.1 54,50 L54,14 C54,12.9 53.1,12 52,12 Z M32,46 C27.6,46 24,42.4 24,38 C24,33.6 27.6,30 32,30 C36.4,30 40,33.6 40,38 C40,42.4 36.4,46 32,46 Z M32,34 C29.8,34 28,35.8 28,38 C28,40.2 29.8,42 32,42 C34.2,42 36,40.2 36,38 C36,35.8 34.2,34 32,34 Z M42,24 L36,24 L36,18 L42,18 L42,24 Z M28,24 L22,24 L22,18 L28,18 L28,24 Z" fill="currentColor" fill-rule="nonzero"></path>
+    </g>
+</svg>
