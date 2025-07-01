@@ -1,5 +1,5 @@
 // Community member data
-const communityMembers = [
+export const communityMembers = [
   {
     name: 'TechLabs Manila',
     category: 'COMPANIES',
@@ -99,48 +99,122 @@ import pdfWorker from 'pdfjs-dist/build/pdf.worker?url';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
-// Initialize map
-const map = L.map('communityMap').setView([14.5995, 120.9842], 12);
-const markers = new Map();
+// Utility function to truncate text to word limit
+function truncateWords(text, wordCount) {
+  const words = text.split(' ');
+  if (words.length <= wordCount) return text;
+  return words.slice(0, wordCount).join(' ') + '...';
+}
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-// Add markers for members with locations
-communityMembers.forEach(member => {
-  if (member.location) {
-    const marker = L.marker([member.location.lat, member.location.lng])
-      .bindPopup(`
-        <strong>${member.name}</strong><br>
-        ${member.location.address}
-      `)
-      .addTo(map);
-    
-    markers.set(member.name, marker);
-    
-    marker.on('click', () => {
-      highlightMember(member.name);
-    });
-  }
-});
-
-// PDF Preview Modal
-const modal = document.createElement('div');
-modal.className = 'pdf-modal';
-modal.innerHTML = `
-  <div class="pdf-modal-content">
-    <button class="close-modal">&times;</button>
-    <button class="nav-btn prev-page">←</button>
-    <canvas id="pdf-canvas"></canvas>
-    <button class="nav-btn next-page">→</button>
-    <div class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></div>
-  </div>
-`;
-document.body.appendChild(modal);
-
+// Variables for community page functionality
+let map = null;
+let markers = new Map();
+let modal = null;
 let currentPdf = null;
 let currentPage = 1;
+let activeFilters = new Set();
+
+function initializeCommunityPage() {
+  // Check if we're on the community page
+  const mapContainer = document.getElementById('communityMap');
+  if (!mapContainer) {
+    return; // Exit if not on community page
+  }
+
+  // Initialize map
+  map = L.map('communityMap').setView([14.5995, 120.9842], 12);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Add markers for members with locations
+  communityMembers.forEach(member => {
+    if (member.location) {
+      const marker = L.marker([member.location.lat, member.location.lng])
+        .bindPopup(`
+          <strong>${member.name}</strong><br>
+          ${member.location.address}
+        `)
+        .addTo(map);
+      
+      markers.set(member.name, marker);
+      
+      marker.on('click', () => {
+        highlightMember(member.name);
+      });
+    }
+  });
+
+  // PDF Preview Modal
+  modal = document.createElement('div');
+  modal.className = 'pdf-modal';
+  modal.innerHTML = `
+    <div class="pdf-modal-content">
+      <button class="close-modal">&times;</button>
+      <button class="nav-btn prev-page">←</button>
+      <canvas id="pdf-canvas"></canvas>
+      <button class="nav-btn next-page">→</button>
+      <div class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Event listeners for modal navigation
+  document.querySelector('.close-modal').addEventListener('click', () => {
+    modal.style.display = 'none';
+    currentPdf = null;
+    currentPage = 1;
+  });
+
+  document.querySelector('.prev-page').addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPdfPreview(currentPdf.url, currentPage);
+    }
+  });
+
+  document.querySelector('.next-page').addEventListener('click', () => {
+    if (currentPage < currentPdf.numPages) {
+      currentPage++;
+      showPdfPreview(currentPdf.url, currentPage);
+    }
+  });
+
+  // Search and filter functionality
+  const searchInput = document.getElementById('searchInput');
+  const tagButtons = document.querySelectorAll('.tag-btn');
+
+  // Event listeners
+  if (searchInput) {
+    searchInput.addEventListener('input', updateDirectory);
+  }
+
+  tagButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tag = button.dataset.tag;
+      if (activeFilters.has(tag)) {
+        activeFilters.delete(tag);
+        button.classList.remove('active');
+      } else {
+        activeFilters.add(tag);
+        button.classList.add('active');
+      }
+      updateDirectory();
+    });
+  });
+
+  // Category collapse functionality
+  document.querySelectorAll('.directory-category h2').forEach(header => {
+    header.addEventListener('click', () => {
+      const category = header.closest('.directory-category');
+      category.classList.toggle('collapsed');
+    });
+  });
+
+  // Initial render
+  updateDirectory();
+}
 
 async function showPdfPreview(pdfUrl, pageNumber = 1) {
   try {
@@ -170,28 +244,35 @@ async function showPdfPreview(pdfUrl, pageNumber = 1) {
   }
 }
 
-// Event listeners for modal navigation
-document.querySelector('.close-modal').addEventListener('click', () => {
-  modal.style.display = 'none';
-  currentPdf = null;
-  currentPage = 1;
-});
-
-document.querySelector('.prev-page').addEventListener('click', () => {
-  if (currentPage > 1) {
-    currentPage--;
-    showPdfPreview(currentPdf.url, currentPage);
-  }
-});
-
-document.querySelector('.next-page').addEventListener('click', () => {
-  if (currentPage < currentPdf.numPages) {
-    currentPage++;
-    showPdfPreview(currentPdf.url, currentPage);
-  }
-});
-
 function createMemberCard(member) {
+  // Process member info fields for truncation
+  const processedInfo = {};
+  if (member.website) {
+    const websiteText = member.website.replace('https://', '').replace('http://', '');
+    processedInfo.website = {
+      full: member.website,
+      truncated: truncateWords(websiteText, 11),
+      needsReadMore: websiteText.split(' ').length > 11
+    };
+  }
+  
+  if (member.email) {
+    processedInfo.email = {
+      full: member.email,
+      truncated: truncateWords(member.email, 11),
+      needsReadMore: member.email.split(' ').length > 11
+    };
+  }
+  
+  if (member.facebook) {
+    const facebookText = member.facebook.replace('https://facebook.com/', '@');
+    processedInfo.facebook = {
+      full: member.facebook,
+      truncated: truncateWords(facebookText, 11),
+      needsReadMore: facebookText.split(' ').length > 11
+    };
+  }
+
   const pdfPreview = member.pdfDocument ? `
     <div class="pdf-preview" data-pdf-url="${member.pdfDocument}">
       <canvas class="pdf-thumbnail"></canvas>
@@ -209,10 +290,37 @@ function createMemberCard(member) {
         </div>
       </div>
       <div class="member-info">
-        ${member.website ? `<p>Website: <a href="${member.website}" target="_blank">${member.website}</a></p>` : ''}
-        ${member.email ? `<p>Email: <a href="mailto:${member.email}">${member.email}</a></p>` : ''}
+        ${member.website ? `
+          <div class="info-item">
+            <span class="info-label">Website: </span>
+            <span class="info-content">
+              <span class="truncated"><a href="${processedInfo.website.full}" target="_blank">${processedInfo.website.truncated}</a></span>
+              <span class="full" style="display: none;"><a href="${processedInfo.website.full}" target="_blank">${processedInfo.website.full}</a></span>
+              ${processedInfo.website.needsReadMore ? '<button class="read-more-info">READ MORE</button>' : ''}
+            </span>
+          </div>
+        ` : ''}
+        ${member.email ? `
+          <div class="info-item">
+            <span class="info-label">Email: </span>
+            <span class="info-content">
+              <span class="truncated"><a href="mailto:${processedInfo.email.full}">${processedInfo.email.truncated}</a></span>
+              <span class="full" style="display: none;"><a href="mailto:${processedInfo.email.full}">${processedInfo.email.full}</a></span>
+              ${processedInfo.email.needsReadMore ? '<button class="read-more-info">READ MORE</button>' : ''}
+            </span>
+          </div>
+        ` : ''}
         ${member.phone ? `<p>Phone: <a href="tel:${member.phone}">${member.phone}</a></p>` : ''}
-        ${member.facebook ? `<p>Facebook: <a href="${member.facebook}" target="_blank">${member.facebook.replace('https://facebook.com/', '@')}</a></p>` : ''}
+        ${member.facebook ? `
+          <div class="info-item">
+            <span class="info-label">Facebook: </span>
+            <span class="info-content">
+              <span class="truncated"><a href="${processedInfo.facebook.full}" target="_blank">${processedInfo.facebook.truncated}</a></span>
+              <span class="full" style="display: none;"><a href="${processedInfo.facebook.full}" target="_blank">${processedInfo.facebook.full}</a></span>
+              ${processedInfo.facebook.needsReadMore ? '<button class="read-more-info">READ MORE</button>' : ''}
+            </span>
+          </div>
+        ` : ''}
       </div>
       ${pdfPreview}
       <div class="tags">
@@ -251,7 +359,8 @@ function initializePdfPreviews() {
 }
 
 function updateDirectory() {
-  const searchTerm = searchInput.value.toLowerCase();
+  const searchInput = document.getElementById('searchInput');
+  const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
   
   document.querySelectorAll('.member-grid').forEach(grid => {
     grid.innerHTML = '';
@@ -275,30 +384,48 @@ function updateDirectory() {
   });
 
   document.querySelectorAll('.member-card').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      // Don't trigger if clicking on buttons or links
+      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.closest('button') || e.target.closest('a')) return;
+      
       const memberName = card.dataset.member;
       highlightMember(memberName);
+    });
+  });
+
+  // Add event listeners to read more buttons for member info
+  document.querySelectorAll('.read-more-info').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent card click
+      const container = this.closest('.info-content');
+      const truncated = container.querySelector('.truncated');
+      const full = container.querySelector('.full');
+      
+      if (truncated.style.display !== 'none') {
+        truncated.style.display = 'none';
+        full.style.display = 'inline';
+        this.textContent = 'READ LESS';
+      } else {
+        truncated.style.display = 'inline';
+        full.style.display = 'none';
+        this.textContent = 'READ MORE';
+      }
     });
   });
 
   initializePdfPreviews();
 }
 
-// Search and filter functionality
-const searchInput = document.getElementById('searchInput');
-const tagButtons = document.querySelectorAll('.tag-btn');
-let activeFilters = new Set();
-
 function highlightMember(memberName) {
   // Remove previous selection
-  document.querySelectorAll('.member-card.selected').forEach(card => {
-    card.classList.remove('selected');
+  document.querySelectorAll('.member-card.highlighted').forEach(card => {
+    card.classList.remove('highlighted');
   });
   
   // Add selection to new card
   const memberCard = document.querySelector(`.member-card[data-member="${memberName}"]`);
   if (memberCard) {
-    memberCard.classList.add('selected');
+    memberCard.classList.add('highlighted');
     memberCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
   
@@ -306,33 +433,12 @@ function highlightMember(memberName) {
   const marker = markers.get(memberName);
   if (marker) {
     marker.openPopup();
+    // Center map on marker
+    if (map) {
+      map.setView(marker.getLatLng(), map.getZoom());
+    }
   }
 }
 
-// Category collapse functionality
-document.querySelectorAll('.directory-category h2').forEach(header => {
-  header.addEventListener('click', () => {
-    const category = header.closest('.directory-category');
-    category.classList.toggle('collapsed');
-  });
-});
-
-// Event listeners
-searchInput.addEventListener('input', updateDirectory);
-
-tagButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const tag = button.dataset.tag;
-    if (activeFilters.has(tag)) {
-      activeFilters.delete(tag);
-      button.classList.remove('active');
-    } else {
-      activeFilters.add(tag);
-      button.classList.add('active');
-    }
-    updateDirectory();
-  });
-});
-
-// Initial render
-updateDirectory();
+// Initialize community page when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeCommunityPage);
